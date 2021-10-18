@@ -1,0 +1,26 @@
+div {
+    font-size: larger;
+    color: darkblue;
+}
+.blueColor {
+    color: forestgreen;
+    font-family: arial;
+    font-size: 24px;
+  }
+  
+  span.blueColor {
+    color: hotpink;
+    font-family: arial;
+    font-size: 24px;
+  }
+  #specificColor {
+    color: indigo;
+    font-family: verdana;
+    font-size: 24px;
+  }
+  
+  #specificLink {
+    color: lightgreen;
+    font-family: arial;
+    font-size: 28px;
+  }
