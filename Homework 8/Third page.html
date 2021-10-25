@@ -1,0 +1,98 @@
+<html>
+    <head>
+        <title>My third page</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  
+  <script>
+      // this function checks the textboxes to see if there is anything in them. If
+      // turns the textbox red, gives it focus and prints out a required message
+      function checkboxes1 ()
+      {
+          var firstName = document.getElementById("fName").value;
+          if(firstName == "")
+          {
+              document.getElementById("fName").style.backgroundColor = "red";
+              document.getElementById("fName").focus();
+              document.getElementById("fNameMessage").innerHTML = "* Required";
+              document.getElementById("fNameMessage").style.color = "red";
+                
+                return false;
+          }
+
+      }
+</script>
+
+<script>
+    // this function checks the textboxes to see if there is anything in them. If
+    // turns the textbox red, gives it focus and prints out a required message
+    function checkboxes2 ()
+    {
+        var lastName = document.getElementById("lName").value;
+        if(lastName == "")
+        {
+            document.getElementById("lName").style.backgroundColor = "red";
+            document.getElementById("lName").focus();
+            document.getElementById("lNameMessage").innerHTML = "* Required";
+            document.getElementById("lNameMessage").style.color = "red";
+                
+                return false;
+        }
+
+    }
+</script>
+
+<script>
+    // this function checks the textboxes to see if there is anything in them. If
+    // turns the textbox red, gives it focus and prints out a required message
+    function checkboxes3 ()
+    {
+        var mail = document.getElementById("Email").value;
+        if(mail == "")
+        {
+            document.getElementById("Email").style.backgroundColor = "red";
+            document.getElementById("Email").focus();
+            document.getElementById("EmailMessage").innerHTML = "* Required";
+            document.getElementById("EmailMessage").style.color = "red";
+                
+                return false;
+        }
+
+    }
+</script>
+</head>
+    <body>
+        <div>
+        <h1>Terms of agreement</h1>
+        <input type="checkbox" name="Agree" value="Agree"> Agree <br>
+        <input type="checkbox" name="Disagree" value="Disagree"> Disagree<br>
+
+        <form action="nextPage.html" type="Post">
+            First Name: <input type="text" id="fName">&nbsp;<span id="fNameMessage"></span><br>
+            <button id="mySubmit" type="submit" onclick='checkboxes1();'>Submit</button>
+            Last Name: <input type="text" id="lName">&nbsp;<span id="lNameMessage"></span><br>
+            <button id="mySubmit" type="submit" onclick='checkboxes2();'>Submit</button>
+        </form>
+
+        <form action="nextPage.html" type="Post">
+            Email: <input type="text" id="Email">&nbsp;<span id="EmailMessage"></span><br>
+            <button id="mySubmit" type="submit" onclick='checkboxes3 ();'>Submit</button>
+        </form>
+
+        <br>
+        <a href="My website.html">Page 1</a>
+        <br>
+        <a href="Second page.html">Page 2</a>
+        <br>
+        <button type="button" class="btn">Basic</button>
+        <button type="button" class="btn btn-default">contacts</button>
+        <button type="button" class="btn btn-primary">links</button>
+        <button type="button" class="btn btn-success">privacy</button>
+        <button type="button" class="btn btn-warning">shipping</button>
+        <button type="button" class="btn btn-danger">associates</button>
+        <button type="button" class="btn btn-link">quit</button>
+        </div>
+        </body>
+    </html>
