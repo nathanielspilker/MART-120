@@ -3,19 +3,73 @@
         <title>My p5.js page</title>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.1.9/p5.min.js"></script>
         <script>
+            var headX = 250;
+var headY = 100;
+var headDirection = 1;
+
+var bodyX = 200;
+var bodyY = 185;
+var bodyDirection = 3;
+
+var mybodyX = 250;
+var mybodyY = 170;
+var mybodyDirection = 3;
+
+var size = 22;
+var count = 0;
+var sizeDirection = 2;
+
+var lhandX = 200;
+var lhandY = 200;
+var lhandDirection = 2;
+
+var rhandX = 250;
+var rhandY = 100;
+var rhandDirection = 4;
+
+
             function setup()
             {
                 createCanvas(400, 400);
+                headDirection = Math.floor(Math.random() * 10) + 1;
+                bodyDirection = Math.floor(Math.random() * 10) + 1;
+                lhandDirection = Math.floor(Math.random() * 10) + 1;
+                rhandDirection = Math.floor(Math.random() * 10) + 1;
             }
             function draw()
             {
              background(220);
-             textSize(35);
+             textSize(size);
+    size+= sizeDirection;
+    count++;
+    if(count > 5)
+    {
+        sizeDirection *=-1;
+        count = 0;
+    }
              text('Nathaniel Spilker', 10, 30);
              fill(300,300,300);
-             circle(180,150,100);
+             circle(headX,headY,175);
+    headX+=headDirection;
+    if(headX >= 418 || headX <= 82)
+    {
+        headDirection *= -1;
+    }
+    
              fill(150,150,150);
-             rect(130,200,100,180);
+             rect(200,bodyY,100,150);
+    bodyY += bodyDirection;
+    if(bodyY <= 0 || bodyY >= 450 )
+    {
+        bodyDirection *= -1;
+    }
+    fill(150,150,150);
+             rect(200,mybodyY,100,150);
+    mybodyY += mybodyDirection;
+    if(mybodyY <= 0 || mybodyY >= 450 )
+    {
+        mybodyDirection *= -1;
+    }
              fill(0,0,0);
              rect(150,140,20,5);
              rect(190,140,20,5);
@@ -32,9 +86,19 @@
              line(210, 200, 300, 310);
              line(150, 200, 70, 310);
              fill(300,300,300);
-             circle(300,310,30);
+             circle(lhandX,lhandY,30);
+    lhandX+=lhandDirection;
+    if(lhandX >= 418 || lhandX <= 82)
+    {
+        lhandDirection *= -1;
+    }
              fill(300,300,300);
-             circle(70,310,30);
+             circle(rhandX,rhandY,30);
+    rhandX+=rhandDirection;
+    if(rhandX >= 418 || rhandX <= 82)
+    {
+        rhandDirection *= -1;
+    }
              fill(300,300,300);
              circle(160,160,30);
              fill(300,300,300);
