@@ -30,37 +30,30 @@ function draw()
     background(600,600,600);
     stroke(0);
     fill(0);
-    rect(0,0,width,10);
-    rect(0,0,10,height);
-    rect(0, height-10,width, 10);
-    rect(width-10,0,10,height-50);
 
-    textSize(10);
-    text("EXIT", width-50,height-50)
+    createborders();
 
-    fill(0,0,800);
-    circle(playerX,playerY,25);
+    createcharacter();
 
-    if(keyIsDown(w))
-    {
-        playerY -= 5;   
-    }
-    if(keyIsDown(s))
-    {
-        playerY += 5;   
-    }
-    if(keyIsDown(a))
-    {
-        playerX -= 5;   
-    }
-    if(keyIsDown(d))
-    {
-        playerX += 5;   
-    }
+    createenemy1();
 
-    fill(150,0,0);
-    circle(enemyX, enemyY, 40);
+    createenemy2();
 
+    charactermovement();
+
+    createtext();
+
+    createmouseshape();
+
+    displayyouwin();
+
+    createenemy2speed();
+
+    createenemy1speed();
+}
+
+function createenemy1speed()
+{
     enemyXspeed = Math.floor(Math.random() * (Math.floor(Math.random() * 5)) + 1);
     enemyYspeed = Math.floor(Math.random() * (Math.floor(Math.random() * 5)) + 1);
 
@@ -82,10 +75,10 @@ function draw()
     {
         enemyY = height;
     }
+}
 
-    fill(10,200,20);
-    circle(enemy2X, enemy2Y, 20);
-
+function createenemy2speed()
+{
     enemy2Xspeed = Math.floor(Math.random() * (Math.floor(Math.random() * 10)) + 1);
     enemy2Yspeed = Math.floor(Math.random() * (Math.floor(Math.random() * 10)) + 1);
 
@@ -107,7 +100,10 @@ function draw()
     {
         enemy2Y = height;
     }
+}
 
+function displayyouwin()
+{
     if(playerX > width && playerY > width-50)
     {
         fill(0);
@@ -115,9 +111,64 @@ function draw()
         textSize(20);
         text("You are a Winner!", width/2-50, height/2-50);
     }
+}
 
+function createmouseshape()
+{
     fill(0,0,0);
     circle(mouseshapeX, mouseshapeY, 50);
+}
+
+function createtext()
+{
+    textSize(10);
+    text("EXIT", width-50,height-50)
+}
+
+function createenemy2()
+{
+    fill(10,200,20);
+    circle(enemy2X, enemy2Y, 20);
+}
+
+function createenemy1()
+{
+    fill(150,0,0);
+    circle(enemyX, enemyY, 40);
+}
+
+function createcharacter()
+{
+    fill(0,0,800);
+    circle(playerX,playerY,25);
+}
+
+function charactermovement()
+{
+    if(keyIsDown(w))
+    {
+        playerY -= 5;   
+    }
+    if(keyIsDown(s))
+    {
+        playerY += 5;   
+    }
+    if(keyIsDown(a))
+    {
+        playerX -= 5;   
+    }
+    if(keyIsDown(d))
+    {
+        playerX += 5;   
+    }
+}
+
+function createborders()
+{
+    rect(0,0,width,10);
+    rect(0,0,10,height);
+    rect(0, height-10,width, 10);
+    rect(width-10,0,10,height-50);
 }
 
 function mouseClicked()
