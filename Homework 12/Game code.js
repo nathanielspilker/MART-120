@@ -1,178 +1,128 @@
 var playerX = 100;
 var playerY = 100;
 
-var w = 87; 
+var w = 87;
 var s = 83;
 var a = 65;
 var d = 68;
 
 var enemyX = 30;
 var enemyY = 50;
-var enemyXspeed;
-var enemyYspeed;
 
-var enemy2X = 30;
-var enemy2Y = 50;
-var enemy2Xspeed;
-var enemy2Yspeed;
+var enemyXs = [];
+var enemyYs = [];
+var diameters = [];
+
+var enemyXSpeeds = [];
+var enemyYSpeeds = [];
 
 var mouseshapeX;
 var mouseshapeY;
-function setup()
-{
-    createCanvas(500, 600);
-    enemyXspeed = Math.floor(Math.random() * (Math.floor(Math.random() * 5)) + 1);
-    enemyYspeed = Math.floor(Math.random() * (Math.floor(Math.random() * 5)) + 1);
+function setup() {
+    createcanvas(500, 600);
+
+    for (var i = 0; i < 50; i++) {
+        enemyXSpeeds[i] = Math.floor(Math.random() * (Math.floor(Math.random() * 5)) + 1);
+        enemyYSpeeds[i] = Math.floor(Math.random() * (Math.floor(Math.random() * 5)) + 1);
+        enemyXs[i] = getRandomNumber(500);
+        enemyYs[i] = getRandomNumber(600);
+        diameters[i] = getRandomNumber(30);
+    }
+
+    createcharacter(200, 350);
 }
 
-function draw()
-{
-    background(600,600,600);
+function draw() {
+    background(120, 45, 78);
     stroke(0);
     fill(0);
 
-    createborders();
+    createborders(10);
 
-    createcharacter();
+    textSize(16);
+    text("EXIT", width - 50, height - 50)
 
-    createenemy1();
-
-    createenemy2();
-
+    drawcharacter();
     charactermovement();
 
-    createtext();
+    fill(13, 145, 14);
 
-    createmouseshape();
+    for (var i = 0; i < enemyXs.length; i++) {
+        circle(enemyXs[i], enemyYs[i], diameters[i]);
+        enemyXSpeeds[i] = Math.floor(Math.random() * (Math.floor(Math.random() * 5)) + 1);
+        enemyYSpeeds[i] = Math.floor(Math.random() * (Math.floor(Math.random() * 5)) + 1);
 
-    displayyouwin();
+        enemyXs[i] += enemyXSpeeds[i];
+        enemyYs[i] += enemyYSpeeds[i];
 
-    createenemy2speed();
-
-    createenemy1speed();
-}
-
-function createenemy1speed()
-{
-    enemyXspeed = Math.floor(Math.random() * (Math.floor(Math.random() * 5)) + 1);
-    enemyYspeed = Math.floor(Math.random() * (Math.floor(Math.random() * 5)) + 1);
-
-    enemyX += enemyXspeed;
-    enemyY += enemyYspeed;
-    if(enemyX > width)
-    {
-        enemyX = 0;
+        if (enemyXs[i] > width) {
+            enemyXs[i] = 0;
+        }
+        if (enemyXs[i] < 0) {
+            enemyXs[i] = width;
+        }
+        if (enemyYs[i] > height) {
+            enemyYs[i] = 0;
+        }
+        if (enemyYs[i] < 0) {
+            enemyYs[i] = height;
+        }
     }
-    if(enemyX < 0)
-    {
-        enemyX = width;
-    }
-    if(enemyY > height)
-    {
-        enemyY = 0;
-    }
-    if(enemyY < 0)
-    {
-        enemyY = height;
-    }
-}
 
-function createenemy2speed()
-{
-    enemy2Xspeed = Math.floor(Math.random() * (Math.floor(Math.random() * 10)) + 1);
-    enemy2Yspeed = Math.floor(Math.random() * (Math.floor(Math.random() * 10)) + 1);
-
-    enemy2X += enemy2Xspeed;
-    enemy2Y += enemy2Yspeed;
-    if(enemy2X > width)
-    {
-        enemy2X = 0;
-    }
-    if(enemy2X < 0)
-    {
-        enemy2X = width;
-    }
-    if(enemy2Y > height)
-    {
-        enemy2Y = 0;
-    }
-    if(enemy2Y < 0)
-    {
-        enemy2Y = height;
-    }
-}
-
-function displayyouwin()
-{
-    if(playerX > width && playerY > width-50)
-    {
+    if (playerX > width && playerY > width - 50) {
         fill(0);
         stroke(5);
-        textSize(20);
-        text("You are a Winner!", width/2-50, height/2-50);
+        textSize(26);
+        text("You Win!", width / 2 - 50, height / 2 - 50);
+    }
+
+    fill(120, 130, 140);
+    circle(mouseshapeX, mouseshapeY, 25);
+}
+
+function charactermovement() {
+
+    if (keyIsDown(w)) {
+        playerY -= 10;
+    }
+    if (keyIsDown(s)) {
+        playerY += 10;
+    }
+    if (keyIsDown(a)) {
+        playerX -= 10;
+        console.log("movement: " + playerX);
+    }
+    if (keyIsDown(d)) {
+        playerX += 10;
     }
 }
 
-function createmouseshape()
-{
-    fill(0,0,0);
-    circle(mouseshapeX, mouseshapeY, 50);
+function createcharacter(x, y) {
+    playerX = x;
+    playerY = y;
 }
 
-function createtext()
-{
-    textSize(10);
-    text("EXIT", width-50,height-50)
+function drawcharacter() {
+    fill(23, 40, 123);
+    circle(playerX, playerY, 25);
 }
 
-function createenemy2()
-{
-    fill(10,200,20);
-    circle(enemy2X, enemy2Y, 20);
+function createborders(thickness) {
+
+    rect(0, 0, width, thickness);
+
+    rect(0, 0, thickness, height);
+
+    rect(0, height - thickness, width, thickness);
+
+    rect(width - thickness, 0, thickness, height - 50);
 }
 
-function createenemy1()
-{
-    fill(150,0,0);
-    circle(enemyX, enemyY, 40);
-}
-
-function createcharacter()
-{
-    fill(0,0,800);
-    circle(playerX,playerY,25);
-}
-
-function charactermovement()
-{
-    if(keyIsDown(w))
-    {
-        playerY -= 5;   
-    }
-    if(keyIsDown(s))
-    {
-        playerY += 5;   
-    }
-    if(keyIsDown(a))
-    {
-        playerX -= 5;   
-    }
-    if(keyIsDown(d))
-    {
-        playerX += 5;   
-    }
-}
-
-function createborders()
-{
-    rect(0,0,width,10);
-    rect(0,0,10,height);
-    rect(0, height-10,width, 10);
-    rect(width-10,0,10,height-50);
-}
-
-function mouseClicked()
-{
+function mouseclicked() {
     mouseshapeX = mouseX;
     mouseshapeY = mouseY;
+}
+
+function getRandomNumber(number) {
+    return Math.floor(Math.random() * number) + 10;
 }
